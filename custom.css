@@ -1,0 +1,196 @@
+/* Custom styles for Flight Analytics Dashboard */
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Chart containers */
+.chart-container {
+    position: relative;
+    min-height: 400px;
+}
+
+/* Card enhancements */
+.card {
+    border: none;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Statistics cards */
+.card.bg-primary,
+.card.bg-success,
+.card.bg-info,
+.card.bg-warning {
+    border: none;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Form enhancements */
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button enhancements */
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-1px);
+}
+
+/* Table enhancements */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th {
+    background-color: var(--bs-gray-100);
+    border-top: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+}
+
+/* Badge enhancements */
+.badge {
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5em 0.75em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Dark mode specific adjustments */
+[data-bs-theme="dark"] .table th {
+    background-color: var(--bs-gray-800);
+    color: var(--bs-gray-100);
+}
+
+[data-bs-theme="dark"] .card {
+    background-color: var(--bs-gray-900);
+    border-color: var(--bs-gray-800);
+}
+
+/* Icon animations */
+.fa-plane {
+    animation: fly 2s ease-in-out infinite;
+}
+
+@keyframes fly {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Plotly chart responsive adjustments */
+.plotly-graph-div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+}
+
+/* Utility classes */
+.text-primary-emphasis {
+    color: var(--bs-primary-text-emphasis) !important;
+}
+
+.bg-primary-subtle {
+    background-color: var(--bs-primary-bg-subtle) !important;
+}
+
+/* Navigation enhancements */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.navbar-brand:hover {
+    color: var(--bs-primary) !important;
+}
+
+/* Alert enhancements */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 0.25rem solid #f3f3f3;
+    border-top: 0.25rem solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}

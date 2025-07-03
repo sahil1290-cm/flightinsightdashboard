@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Flight Search - Flight Analytics Dashboard{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">
+            <i class="fas fa-plane text-primary me-3"></i>Flight Analytics Dashboard
+        </h1>
+        <p class="lead text-muted">
+            Discover flight trends, analyze pricing patterns, and get AI-powered insights for your travel plans
+        </p>
+    </div>
+
+    <!-- Search Form -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-search me-2"></i>Search Flight Data
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('dashboard') }}" id="flightSearchForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="from_city" class="form-label">
+                                    <i class="fas fa-map-marker-alt me-1"></i>From City
+                                </label>
+                                <input type="text" class="form-control" id="from_city" name="from_city" 
+                                       placeholder="e.g., New York" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="to_city" class="form-label">
+                                    <i class="fas fa-map-marker-alt me-1"></i>To City
+                                </label>
+                                <input type="text" class="form-control" id="to_city" name="to_city" 
+                                       placeholder="e.g., Los Angeles" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="start_date" class="form-label">
+                                    <i class="fas fa-calendar-alt me-1"></i>Start Date
+                                </label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="end_date" class="form-label">
+                                    <i class="fas fa-calendar-alt me-1"></i>End Date
+                                </label>
+                                <input type="date" class="form-control" id="end_date" name="end_date" required>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-chart-line me-2"></i>Analyze Flight Data
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-chart-line fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Price Trends</h5>
+                    <p class="card-text text-muted">
+                        Analyze flight price trends over time with interactive visualizations
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-route fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Popular Routes</h5>
+                    <p class="card-text text-muted">
+                        Discover the most popular flight routes and travel patterns
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-robot fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">AI Insights</h5>
+                    <p class="card-text text-muted">
+                        Get AI-powered recommendations and insights for your travel plans
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Set default dates
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const nextMonth = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
+    
+    document.getElementById('start_date').value = nextWeek.toISOString().split('T')[0];
+    document.getElementById('end_date').value = nextMonth.toISOString().split('T')[0];
+    
+    // Form validation
+    document.getElementById('flightSearchForm').addEventListener('submit', function(e) {
+        const startDate = new Date(document.getElementById('start_date').value);
+        const endDate = new Date(document.getElementById('end_date').value);
+        
+        if (startDate >= endDate) {
+            e.preventDefault();
+            alert('End date must be after start date');
+        }
+    });
+});
+</script>
+{% endblock %}
